@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5693353447511424600}
   - component: {fileID: 1987623196307144779}
   - component: {fileID: 8843823253850224725}
-  - component: {fileID: 4474200916265153814}
   - component: {fileID: 952699022614150420}
   - component: {fileID: 2784060461554235258}
+  - component: {fileID: 4474200916265153814}
   m_Layer: 0
   m_Name: VR_Player
   m_TagString: Untagged
@@ -67,63 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017c5e3933235514c9520e1dace2a4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ActionAssets: []
---- !u!114 &4474200916265153814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2168414399998047297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e06f24eb6e0fef54c87e53217a8fe94d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  rotationSpeed: 60
-  moveInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Move Input
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 6d85f49b-8f77-45b8-802d-58cf1db00ede
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: a205fa8c-cabd-4963-a7ed-bccc7c1fddd1
-        m_Path: <XRController>{LeftHand}/thumbstick
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Move Input
-        m_Flags: 0
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  rotateInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Rotate Input
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: e3069284-63b5-4e28-bf42-2835fcb9f25b
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: c8e1df6d-1cc5-4d69-9c7f-e0796d2f882b
-        m_Path: <XRController>{RightHand}/thumbstick
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Rotate Input
-        m_Flags: 0
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  characterController: {fileID: 952699022614150420}
-  vrCamera: {fileID: 6432762796049535005}
+  m_ActionAssets:
+  - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!143 &952699022614150420
 CharacterController:
   m_ObjectHideFlags: 0
@@ -174,6 +119,62 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &4474200916265153814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2168414399998047297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e06f24eb6e0fef54c87e53217a8fe94d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  rotationSpeed: 60
+  moveInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Move Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 6d85f49b-8f77-45b8-802d-58cf1db00ede
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: a205fa8c-cabd-4963-a7ed-bccc7c1fddd1
+        m_Path: <XRController>{LeftHand}/thumbstick
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Move Input
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rotateInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Rotate Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: e3069284-63b5-4e28-bf42-2835fcb9f25b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: c8e1df6d-1cc5-4d69-9c7f-e0796d2f882b
+        m_Path: <XRController>{RightHand}/thumbstick
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Rotate Input
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  characterController: {fileID: 952699022614150420}
+  vrCamera: {fileID: 6432762796049535005}
 --- !u!1 &2188143692349208096
 GameObject:
   m_ObjectHideFlags: 0
