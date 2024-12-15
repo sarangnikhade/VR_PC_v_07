@@ -141,40 +141,24 @@ MonoBehaviour:
       m_Name: Move Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 6d85f49b-8f77-45b8-802d-58cf1db00ede
+      m_Id: 86182e24-335f-4435-8ea9-2f03fedaabf6
       m_Processors: 
       m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: a205fa8c-cabd-4963-a7ed-bccc7c1fddd1
-        m_Path: <XRController>{LeftHand}/thumbstick
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Move Input
-        m_Flags: 0
+      m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   rotateInput:
     m_UseReference: 1
     m_Action:
       m_Name: Rotate Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: e3069284-63b5-4e28-bf42-2835fcb9f25b
+      m_Id: 80f46af1-34a7-40ce-b6ec-23733fa862bc
       m_Processors: 
       m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: c8e1df6d-1cc5-4d69-9c7f-e0796d2f882b
-        m_Path: <XRController>{RightHand}/thumbstick
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Rotate Input
-        m_Flags: 0
+      m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: -8061240218431744966, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   characterController: {fileID: 952699022614150420}
   vrCamera: {fileID: 6432762796049535005}
 --- !u!95 &8981670018316496687
