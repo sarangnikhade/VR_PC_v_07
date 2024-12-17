@@ -36,3 +36,13 @@ public class PlayerSpawner : MonoBehaviour
         Debug.Log($"Spawned {(isVRPlayer ? "VR_Player" : "PC_Player")} at {spawnPoint.position}");
     }
 }
+
+
+
+
+
+
+
+
+
+
