@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1856967883
+  GlobalObjectIdHash: 696818963
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotationSpeed: 100
+  verticalSpeed: 10
   moveInput:
     m_UseReference: 1
     m_Action:
@@ -158,6 +159,38 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -8061240218431744966, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rightGripInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Grip Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 490ef6d1-3be9-40d1-8f46-cc9df17c75ba
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: a8b58ca8-840b-4c11-83f2-fc5c567c2f2b
+        m_Path: <XRController>{LeftHand}/gripPressed
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Right Grip Input
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 15759602096507913, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftGripInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Left Grip Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a1081d2e-f0a6-46f3-ba76-42d5faace677
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -3742484312079769484, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   characterController: {fileID: 952699022614150420}
   vrCamera: {fileID: 6432762796049535005}
 --- !u!95 &8981670018316496687

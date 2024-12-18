@@ -1341,7 +1341,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""name"": ""Grab Move"",
                     ""type"": ""Button"",
                     ""id"": ""c5a6d766-d487-42ae-b293-da4749469e18"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -3335,6 +3335,54 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Grip"",
+            ""id"": ""78cff70b-9af0-40cf-96af-9209db93199d"",
+            ""actions"": [
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Value"",
+                    ""id"": ""351b4102-0190-43bd-abd8-549f561833eb"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Value"",
+                    ""id"": ""5c93cda9-8e54-44b1-88b8-551ba72ab205"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9050884e-3474-4841-ba40-c63fd0e1f0c3"",
+                    ""path"": ""<OculusTouchController>{RightHand}/grip"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35c58da5-ed6a-4f31-96bf-b25bb63db9b5"",
+                    ""path"": ""<OculusTouchController>{LeftHand}/grip"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -3447,6 +3495,10 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         m_TouchscreenGestures_TwistDeltaRotation = m_TouchscreenGestures.FindAction("Twist Delta Rotation", throwIfNotFound: true);
         m_TouchscreenGestures_ScreenTouchCount = m_TouchscreenGestures.FindAction("Screen Touch Count", throwIfNotFound: true);
         m_TouchscreenGestures_SpawnObject = m_TouchscreenGestures.FindAction("Spawn Object", throwIfNotFound: true);
+        // Grip
+        m_Grip = asset.FindActionMap("Grip", throwIfNotFound: true);
+        m_Grip_Right = m_Grip.FindAction("Right", throwIfNotFound: true);
+        m_Grip_Left = m_Grip.FindAction("Left", throwIfNotFound: true);
     }
 
     ~@XRIDefaultInputActions()
@@ -3460,6 +3512,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         UnityEngine.Debug.Assert(!m_XRIRightLocomotion.enabled, "This will cause a leak and performance issues, XRIDefaultInputActions.XRIRightLocomotion.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_XRIUI.enabled, "This will cause a leak and performance issues, XRIDefaultInputActions.XRIUI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_TouchscreenGestures.enabled, "This will cause a leak and performance issues, XRIDefaultInputActions.TouchscreenGestures.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Grip.enabled, "This will cause a leak and performance issues, XRIDefaultInputActions.Grip.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -4579,6 +4632,60 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         }
     }
     public TouchscreenGesturesActions @TouchscreenGestures => new TouchscreenGesturesActions(this);
+
+    // Grip
+    private readonly InputActionMap m_Grip;
+    private List<IGripActions> m_GripActionsCallbackInterfaces = new List<IGripActions>();
+    private readonly InputAction m_Grip_Right;
+    private readonly InputAction m_Grip_Left;
+    public struct GripActions
+    {
+        private @XRIDefaultInputActions m_Wrapper;
+        public GripActions(@XRIDefaultInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Right => m_Wrapper.m_Grip_Right;
+        public InputAction @Left => m_Wrapper.m_Grip_Left;
+        public InputActionMap Get() { return m_Wrapper.m_Grip; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GripActions set) { return set.Get(); }
+        public void AddCallbacks(IGripActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GripActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GripActionsCallbackInterfaces.Add(instance);
+            @Right.started += instance.OnRight;
+            @Right.performed += instance.OnRight;
+            @Right.canceled += instance.OnRight;
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
+        }
+
+        private void UnregisterCallbacks(IGripActions instance)
+        {
+            @Right.started -= instance.OnRight;
+            @Right.performed -= instance.OnRight;
+            @Right.canceled -= instance.OnRight;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
+        }
+
+        public void RemoveCallbacks(IGripActions instance)
+        {
+            if (m_Wrapper.m_GripActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGripActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GripActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GripActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GripActions @Grip => new GripActions(this);
     public interface IXRIHeadActions
     {
         void OnPosition(InputAction.CallbackContext context);
@@ -4695,5 +4802,10 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         void OnTwistDeltaRotation(InputAction.CallbackContext context);
         void OnScreenTouchCount(InputAction.CallbackContext context);
         void OnSpawnObject(InputAction.CallbackContext context);
+    }
+    public interface IGripActions
+    {
+        void OnRight(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
     }
 }
